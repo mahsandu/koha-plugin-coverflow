@@ -1,5 +1,5 @@
 {
-"/jquery-flipster/jquery.flipster.min.css": {
+"/multislider/multislider.min.css": {
   "get": {
     "x-mojo-to": "Static#get",
     "tags": [
@@ -51,7 +51,7 @@
     }
   }
 },
-"/jquery-flipster/jquery.flipster.min.js": {
+"/multislider/multislider.min.js": {
   "get": {
     "x-mojo-to": "Static#get",
     "tags": [

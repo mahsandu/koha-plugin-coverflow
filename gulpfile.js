@@ -28,7 +28,7 @@ const pm_bundle_path = path.join(pm_file_path, pm_name);
  * If no static files need to be served, set static_relative_path = []
  *
  */
-const static_relative_path = [ 'jquery-flipster', 'artwork' ];
+const static_relative_path = [ 'multislider', 'artwork' ];
 
 var static_absolute_path = [];
 

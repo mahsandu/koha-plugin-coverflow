@@ -80,7 +80,7 @@ $(document).ready(function() {
         <fieldset id="instructions">
             <legend>Setup instructions</legend>
             <div>
-                In the above 'Mapping box' add a section for each multislider. Begin with the report # as the ID, then specify the jQuery selector for the html element you'd like to replace with the multislider. You can also specify an 'options' section (indented) with additional multislider settings which are documented <a href="https://github.com/drien/jquery-flipster/blob/master/README.md">here</a>
+                In the above 'Mapping box' add a section for each multislider. Begin with the report # as the ID, then specify the jQuery selector for the html element you'd like to replace with the multislider. You can also specify an 'options' section (indented) with additional multislider settings which are documented <a href="https://github.com/drien/multislider/blob/master/README.md">here</a>
                 <br/>Note: The plugin uses YAML syntax to read the mapping, spaces matter! :-) When using an id tag the # ust be quoted so that it is not interpreted as a YAML comment
                 <br/>Example mapping with two coverflows:<br/><br/>
                 <pre>

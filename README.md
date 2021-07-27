@@ -76,7 +76,7 @@ The third plugin configuration is a single text area that uses YAML ( actually, 
   style: flat
 ```
 
-In this example, we are telling the plugin to use the report with _id_ 42, and use it to create a multislider widget to replace the HTML element with the _coverflow_ **id** (Note that the selector is quoted, as _#_ is technically a comment in YAML). The options list is passed directly to Flipster, so any options supported by Flipster can be set from the plugin configuration. `style` may be set to `'multislider'`, `'carousel'`, `'wheel'` or `'flat'`; see the [jQuery Flipster demo](http://brokensquare.com/Code/jquery-flipster/demo/) for examples of each.
+In this example, we are telling the plugin to use the report with _id_ 42, and use it to create a multislider widget to replace the HTML element with the _coverflow_ **id** (Note that the selector is quoted, as _#_ is technically a comment in YAML). The options list is passed directly to Flipster, so any options supported by Flipster can be set from the plugin configuration. `style` may be set to `'multislider'`, `'carousel'`, `'wheel'` or `'flat'`; see the [jQuery Flipster demo](http://brokensquare.com/Code/multislider/demo/) for examples of each.
 
 In the example, there's a second setting, that will apply to the *.coverflow_class* **class**.
 
@@ -146,8 +146,8 @@ You should see:
 
 ```
 GET /api/v1/contrib/multislider/reports/{report_id}
-GET /api/v1/contrib/multislider/static/jquery-flipster/jquery.flipster.min.js
-GET /api/v1/contrib/multislider/static/jquery-flipster/jquery.flipster.min.css
+GET /api/v1/contrib/multislider/static/multislider/multislider.min.js
+GET /api/v1/contrib/multislider/static/multislider/multislider.min.css
 ```
 
 Hit those API endpoints and ensure that you can access them.

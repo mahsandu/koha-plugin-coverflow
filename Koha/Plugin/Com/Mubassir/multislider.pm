@@ -47,10 +47,10 @@ our $VERSION = "{VERSION}";
 ## Here is our metadata, some keys are required, some are optional
 our $metadata = {
     name            => 'multislider plugin',
-    author          => 'Kyle M Hall',
-    description     => 'Convert a report into a multislider style widget!',
-    date_authored   => '2014-06-29',
-    date_updated    => '1900-01-01',
+    author          => 'Mubassir',
+    description     => 'Convert a report into a multislider style widget! based on bywater coverflow by kyle m. hall',
+    date_authored   => '2021-07-27',
+    date_updated    => '2021-07-27',
     minimum_version => '19.05',
     maximum_version => undef,
     version         => $VERSION,
@@ -86,7 +86,7 @@ sub run_report {
 
     my $json = get_report( { cgi => $cgi } );
     my $data = from_json($json);
-    my $no_image = $self->retrieve_data('custom_image') || "https://raw.githubusercontent.com/mahsandu/web-assets/master/NoImage.png";
+    my $no_image = $self->retrieve_data('custom_image') || "https://raw.githubusercontent.com/ByWaterSolutions/web-assets/master/NoImage.png";
 
     $template->param(
             'data'      => $data,
@@ -313,7 +313,7 @@ sub opac_js {
     my ( $self ) = @_;
     my $coverflow_js = $self->retrieve_data('coverflow_js');
     return qq{
-        <script src="/api/v1/contrib/multislider/static/jquery-flipster/jquery.flipster.min.js"></script>
+        <script src="/api/v1/contrib/multislider/static/multislider/multislider.min.js"></script>
         <script>$coverflow_js</script>
     };
 }
@@ -322,9 +322,9 @@ sub opac_head {
     my ( $self ) = @_;
 
     return q|
-<link id='flipster-css' href='/api/v1/contrib/multislider/static/jquery-flipster/jquery.flipster.min.css' type='text/css' rel='stylesheet' />
+<link id='flipster-css' href='/api/v1/contrib/multislider/static/multislider/multislider.min.css' type='text/css' rel='stylesheet' />
 <style>
-    /* CSS for Koha multislider Plugin 
+    /* CSS for Koha multislider Plugin
        This CSS was added automatically by installing the multislider plugin
        Please do not modify */
     .multislider {
