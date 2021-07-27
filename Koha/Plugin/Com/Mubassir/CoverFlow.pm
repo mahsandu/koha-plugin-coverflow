@@ -1,4 +1,4 @@
-package Koha::Plugin::Com::ByWaterSolutions::CoverFlow;
+package Koha::Plugin::Com::mahsandu::multislider;
 
 no warnings 'redefine';
 
@@ -18,7 +18,7 @@ BEGIN {
 
     my $pluginsdir = C4::Context->config('pluginsdir');
     my @pluginsdir = ref($pluginsdir) eq 'ARRAY' ? @$pluginsdir : $pluginsdir;
-    my $plugin_libs = '/Koha/Plugin/Com/ByWaterSolutions/CoverFlow/lib/perl5';
+    my $plugin_libs = '/Koha/Plugin/Com/mahsandu/multislider/lib/perl5';
 
     foreach my $plugin_dir (@pluginsdir){
         my $local_libs = "$plugin_dir/$plugin_libs";
@@ -46,9 +46,9 @@ our $VERSION = "{VERSION}";
 
 ## Here is our metadata, some keys are required, some are optional
 our $metadata = {
-    name            => 'CoverFlow plugin',
+    name            => 'multislider plugin',
     author          => 'Kyle M Hall',
-    description     => 'Convert a report into a coverflow style widget!',
+    description     => 'Convert a report into a multislider style widget!',
     date_authored   => '2014-06-29',
     date_updated    => '1900-01-01',
     minimum_version => '19.05',
@@ -86,7 +86,7 @@ sub run_report {
 
     my $json = get_report( { cgi => $cgi } );
     my $data = from_json($json);
-    my $no_image = $self->retrieve_data('custom_image') || "https://raw.githubusercontent.com/bywatersolutions/web-assets/master/NoImage.png";
+    my $no_image = $self->retrieve_data('custom_image') || "https://raw.githubusercontent.com/mahsandu/web-assets/master/NoImage.png";
 
     $template->param(
             'data'      => $data,
@@ -211,12 +211,12 @@ sub upgrade {
     $self->store_data( { last_upgraded => $dt->ymd('-') . ' ' . $dt->hms(':') } );
     my $opacuserjs = C4::Context->preference('opacuserjs');
     my $orig_oujs = $opacuserjs;
-    $opacuserjs =~ s/\/\* JS for Koha CoverFlow Plugin.*End of JS for Koha CoverFlow Plugin \*\///gs;
+    $opacuserjs =~ s/\/\* JS for Koha multislider Plugin.*End of JS for Koha multislider Plugin \*\///gs;
     C4::Context->set_preference( 'opacuserjs', $opacuserjs ) if $opacuserjs ne $orig_oujs;
 
     my $opacusercss = C4::Context->preference('opacusercss');
     my $orig_oucss = $opacusercss;
-    $opacusercss =~ s/\/\* CSS for Koha CoverFlow Plugin.*End of CSS for Koha CoverFlow Plugin \*\///gs;
+    $opacusercss =~ s/\/\* CSS for Koha multislider Plugin.*End of CSS for Koha multislider Plugin \*\///gs;
     C4::Context->set_preference( 'opacusercss', $opacusercss ) if $opacusercss ne $orig_oucss;
 
     my $mapping = $self->retrieve_data('mapping');
@@ -313,7 +313,7 @@ sub opac_js {
     my ( $self ) = @_;
     my $coverflow_js = $self->retrieve_data('coverflow_js');
     return qq{
-        <script src="/api/v1/contrib/coverflow/static/jquery-flipster/jquery.flipster.min.js"></script>
+        <script src="/api/v1/contrib/multislider/static/jquery-flipster/jquery.flipster.min.js"></script>
         <script>$coverflow_js</script>
     };
 }
@@ -322,18 +322,18 @@ sub opac_head {
     my ( $self ) = @_;
 
     return q|
-<link id='flipster-css' href='/api/v1/contrib/coverflow/static/jquery-flipster/jquery.flipster.min.css' type='text/css' rel='stylesheet' />
+<link id='flipster-css' href='/api/v1/contrib/multislider/static/jquery-flipster/jquery.flipster.min.css' type='text/css' rel='stylesheet' />
 <style>
-    /* CSS for Koha CoverFlow Plugin 
-       This CSS was added automatically by installing the CoverFlow plugin
+    /* CSS for Koha multislider Plugin 
+       This CSS was added automatically by installing the multislider plugin
        Please do not modify */
-    .coverflow {
+    .multislider {
         height:160px;
         margin-left:25px;
         width:850px;
     }
 
-    .coverflow img,.coverflow .item {
+    .multislider img,.multislider .item {
         -moz-border-radius:10px;
         -moz-box-shadow:0 5px 5px #777;
         -o-border-radius:10px;
@@ -349,13 +349,13 @@ sub opac_head {
         padding-top:30px;
     }
 
-    .coverflow .selectedItem {
+    .multislider .selectedItem {
         -moz-box-shadow:0 4px 10px #0071BC;
         -webkit-box-shadow:0 4px 10px #0071BC;
         border:1px solid #0071BC;
         box-shadow:0 4px 10px #0071BC;
     }
-    /* End of CSS for Koha CoverFlow Plugin */
+    /* End of CSS for Koha multislider Plugin */
 </style>
     |;
 }
@@ -367,7 +367,7 @@ sub update_coverflow_js {
     my @pluginsdir = ref($pluginsdir) eq 'ARRAY' ? @$pluginsdir : $pluginsdir;
     my @plugindirs;
     foreach my $plugindir ( @pluginsdir ){
-            $plugindir .= "/Koha/Plugin/Com/ByWaterSolutions/CoverFlow";
+            $plugindir .= "/Koha/Plugin/Com/mahsandu/multislider";
             push @plugindirs, $plugindir
     }
     my $template = Template->new({
@@ -408,7 +408,7 @@ sub static_routes {
 sub api_namespace {
     my ($self) = @_;
 
-    return 'coverflow';
+    return 'multislider';
 }
 
 1;

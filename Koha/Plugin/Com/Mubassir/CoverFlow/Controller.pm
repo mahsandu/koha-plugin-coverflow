@@ -1,4 +1,4 @@
-package Koha::Plugin::Com::ByWaterSolutions::CoverFlow::Controller;
+package Koha::Plugin::Com::mahsandu::multislider::Controller;
 
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -18,7 +18,7 @@ package Koha::Plugin::Com::ByWaterSolutions::CoverFlow::Controller;
 use Modern::Perl;
 
 use C4::Context;
-use Koha::Plugin::Com::ByWaterSolutions::CoverFlow;
+use Koha::Plugin::Com::mahsandu::multislider;
 
 use Mojo::Base 'Mojolicious::Controller';
 use Mojo::JSON qw(decode_json);
@@ -27,9 +27,9 @@ use Template;
 
 use Try::Tiny;
 
-=head1 Koha::Plugin::Com::ByWaterSolutions::CoverFlow::Controller
+=head1 Koha::Plugin::Com::mahsandu::multislider::Controller
 
-A class implementing the controller code for CoverFlow requests
+A class implementing the controller code for multislider requests
 
 =head2 Class methods
 
@@ -48,9 +48,9 @@ sub get {
 
     return try {
         # We need this weird hack until the plugin subsystem is not CGI-oriented
-        my $plugin   = Koha::Plugin::Com::ByWaterSolutions::CoverFlow->new();
+        my $plugin   = Koha::Plugin::Com::mahsandu::multislider->new();
 
-        my $data = decode_json( encode_utf8(Koha::Plugin::Com::ByWaterSolutions::CoverFlow::get_report(
+        my $data = decode_json( encode_utf8(Koha::Plugin::Com::mahsandu::multislider::get_report(
             {
                 id         => $report_id,
                 name       => $report_name,
@@ -59,7 +59,7 @@ sub get {
         )));
 
         my $no_image = $plugin->retrieve_data('custom_image')
-        || "https://raw.githubusercontent.com/bywatersolutions/web-assets/master/NoImage.png";
+        || "https://raw.githubusercontent.com/mahsandu/web-assets/master/NoImage.png";
 
         my $template = Template->new({INCLUDE_PATH => join(':',@INC)});
         my $content;
@@ -75,7 +75,7 @@ sub get {
             CoceProviders => C4::Context->preference('CoceProviders'),
             OPACURLOpenInNewWindow => C4::Context->preference('OPACURLOpenInNewWindow'),
         };
-        $template->process( 'Koha/Plugin/Com/ByWaterSolutions/CoverFlow/report.tt',$params,\$content);
+        $template->process( 'Koha/Plugin/Com/mahsandu/multislider/report.tt',$params,\$content);
 
         return $c->render(
             status => 200,

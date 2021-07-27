@@ -1,4 +1,4 @@
-<div class="koha-coverflow" [% IF (use_coce) %]style="min-height: 200px"[% END %]>
+<div class="koha-multislider" [% IF (use_coce) %]style="min-height: 200px"[% END %]>
     <ul>
         [% FOREACH d IN data %]
             [% IF d.isbn || d.localcover %]

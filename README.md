@@ -1,10 +1,10 @@
 # Introduction
 
-Koha’s Plugin System (available in Koha 3.12+) allows for you to add additional tools and reports to [Koha](http://koha-community.org) that are specific to your library. Plugins are installed by uploading KPZ ( Koha Plugin Zip ) packages. A KPZ file is just a zip file containing the perl files, template files, and any other files necessary to make the plugin work. Learn more about the Koha Plugin System in the [Koha 3.22 Manual](http://manual.koha-community.org/3.22/en/pluginsystem.html) or watch [Kyle’s tutorial video](http://bywatersolutions.com/2013/01/23/koha-plugin-system-coming-soon/).
+Koha’s Plugin System (available in Koha 3.12+) allows for you to add additional tools and reports to [Koha](http://koha-community.org) that are specific to your library. Plugins are installed by uploading KPZ ( Koha Plugin Zip ) packages. A KPZ file is just a zip file containing the perl files, template files, and any other files necessary to make the plugin work. Learn more about the Koha Plugin System in the [Koha 3.22 Manual](http://manual.koha-community.org/3.22/en/pluginsystem.html) or watch [Kyle’s tutorial video](http://mahsandu.com/2013/01/23/koha-plugin-system-coming-soon/).
 
 # Downloading
 
-From the [release page](https://github.com/bywatersolutions/koha-plugin-coverflow/releases) you can download the relevant *.kpz file
+From the [release page](https://github.com/mahsandu/koha-plugin-multislider/releases) you can download the relevant *.kpz file
 
 # Installing
 
@@ -23,13 +23,13 @@ Once set up is complete you will need to alter your UseKohaPlugins system prefer
 
 # Setup
 
-Once the plugin is installed you can find it under Admin->Manage plugins, currently the coverflow is neither a tool or report plugin, you can also select 'Show all plugins' after following the 'Plugins' link in reports or tools
+Once the plugin is installed you can find it under Admin->Manage plugins, currently the multislider is neither a tool or report plugin, you can also select 'Show all plugins' after following the 'Plugins' link in reports or tools
 
-The steps to get your coverflow to show up are as follows:
+The steps to get your multislider to show up are as follows:
 
 ## Generate a public report
 
-First, you need to create one or more **public** reports for your coverflow widget or widgets to be based on. This is how the plugin knows what the content of your widget should contain. Each report needs only three columns; title, biblionumber, and isbn. It is important that you have a good and valid isbn, as that is the datum used to actually fetch the cover. Example finding items added in the last 30 days:
+First, you need to create one or more **public** reports for your multislider widget or widgets to be based on. This is how the plugin knows what the content of your widget should contain. Each report needs only three columns; title, biblionumber, and isbn. It is important that you have a good and valid isbn, as that is the datum used to actually fetch the cover. Example finding items added in the last 30 days:
 
 ```SQL
 SELECT b.biblionumber, SUBSTRING_INDEX(m.isbn, ' ', 1) AS isbn, b.title
@@ -43,7 +43,7 @@ SELECT b.biblionumber, SUBSTRING_INDEX(m.isbn, ' ', 1) AS isbn, b.title
   LIMIT 30
 ```
 
-In this iteration of the plugin, we are using Amazon cover images, a future development would be to make the cover image fetcher configurable so we can use any data source for cover image fetching. **Coce has been added as experimental cover source feel free to test using URL https://coce.bywatersolutions.com**
+In this iteration of the plugin, we are using Amazon cover images, a future development would be to make the cover image fetcher configurable so we can use any data source for cover image fetching. **Coce has been added as experimental cover source feel free to test using URL https://coce.mahsandu.com**
 
 Note: You can add an additional column 'localcover' - this should be blank if the biblio doesn't have a localcover and can contain any other data if it does. If this column is populated a local cover will be used. Example below:
 
@@ -67,32 +67,32 @@ The third plugin configuration is a single text area that uses YAML ( actually, 
 ```YAML
 ---
 - id: 42
-  selector: "#coverflow"
+  selector: "#multislider"
   options:
-  style: coverflow
+  style: multislider
 - id: 42
   selector: ".coverflow_class"
   options:
   style: flat
 ```
 
-In this example, we are telling the plugin to use the report with _id_ 42, and use it to create a coverflow widget to replace the HTML element with the _coverflow_ **id** (Note that the selector is quoted, as _#_ is technically a comment in YAML). The options list is passed directly to Flipster, so any options supported by Flipster can be set from the plugin configuration. `style` may be set to `'coverflow'`, `'carousel'`, `'wheel'` or `'flat'`; see the [jQuery Flipster demo](http://brokensquare.com/Code/jquery-flipster/demo/) for examples of each.
+In this example, we are telling the plugin to use the report with _id_ 42, and use it to create a multislider widget to replace the HTML element with the _coverflow_ **id** (Note that the selector is quoted, as _#_ is technically a comment in YAML). The options list is passed directly to Flipster, so any options supported by Flipster can be set from the plugin configuration. `style` may be set to `'multislider'`, `'carousel'`, `'wheel'` or `'flat'`; see the [jQuery Flipster demo](http://brokensquare.com/Code/jquery-flipster/demo/) for examples of each.
 
 In the example, there's a second setting, that will apply to the *.coverflow_class* **class**.
 
-The coverflow plugin now utilizes plugin helper methods to inject the necessary javascript into the opac - the plugin should remove any previously saved JS from the OpacUserJS preference.
+The multislider plugin now utilizes plugin helper methods to inject the necessary javascript into the opac - the plugin should remove any previously saved JS from the OpacUserJS preference.
 
 Why do this? For speed! Rather than regenerating this code each and every time the page loads, we can generate it once, and use it over and over again.
 
-The coverflow now uses an injected API route to build the needed code, you should not need to make any changes to the Apache configuration as in previous versions. You will need to restart plack after plugin installation in order to build the new API routes
+The multislider now uses an injected API route to build the needed code, you should not need to make any changes to the Apache configuration as in previous versions. You will need to restart plack after plugin installation in order to build the new API routes
 
 The final step is to put your selector element somewhere in your public catalog. In this example, I put the following in the system preference OpacMainUserBlock:
 
 ```HTML
-<span id="coverflow">Loading...</span>
+<span id="multislider">Loading...</span>
 ```
 
-Once that is in place, you need only refresh your OPAC page, and there you have it, your very own catalog coverflow widget! Not only do these coverflows look great on a computer screen, but they look great on mobile platforms as well, and are even touch responsive!
+Once that is in place, you need only refresh your OPAC page, and there you have it, your very own catalog multislider widget! Not only do these coverflows look great on a computer screen, but they look great on mobile platforms as well, and are even touch responsive!
 # Report with parameters
 It is now possible to use reports that take input. For example,in a multibranchsystem you can setup a single report as below:
 
@@ -118,13 +118,13 @@ Then in the plugin configuration you can use thismultiple times:
   params:
     - BRANCHA
   options:
-    style: coverflow
+    style: multislider
 - id: 42
   selector: "#coverflow2"
   params:
     - BRANCHB
   options:
-    style: coverflow
+    style: multislider
 ```
 
 # Troubleshooting
@@ -145,9 +145,9 @@ http://koha.host.name/api/v1/.html
 You should see:
 
 ```
-GET /api/v1/contrib/coverflow/reports/{report_id}
-GET /api/v1/contrib/coverflow/static/jquery-flipster/jquery.flipster.min.js
-GET /api/v1/contrib/coverflow/static/jquery-flipster/jquery.flipster.min.css
+GET /api/v1/contrib/multislider/reports/{report_id}
+GET /api/v1/contrib/multislider/static/jquery-flipster/jquery.flipster.min.js
+GET /api/v1/contrib/multislider/static/jquery-flipster/jquery.flipster.min.css
 ```
 
 Hit those API endpoints and ensure that you can access them.

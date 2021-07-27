@@ -1,7 +1,7 @@
 {
   "/reports/{report_id}": {
     "get": {
-      "x-mojo-to": "Com::ByWaterSolutions::CoverFlow::Controller#get",
+      "x-mojo-to": "Com::mahsandu::multislider::Controller#get",
       "operationId": "GetCoverFlowReport",
       "tags": ["opac"],
       "parameters": [

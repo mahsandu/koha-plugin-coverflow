@@ -1,8 +1,8 @@
 {
-  "name": "koha-coverflow-plugin",
+  "name": "koha-multislider-plugin",
   "version": "2.4.47",
   "previous_version": "2.4.46",
-  "description": "Koha CoverFlow Plugin",
+  "description": "Koha multislider Plugin",
   "main": "index.js",
   "dependencies": {
     "datetime": "0.0.3",
@@ -22,12 +22,12 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/bywatersolutions/koha-plugin-coverflow.git"
+    "url": "git+https://github.com/mahsandu/koha-plugin-multislider.git"
   },
-  "author": "Kyle M Hall <kyle@bywatersolutions.com>",
+  "author": "Kyle M Hall <kyle@mahsandu.com>",
   "license": "GPL-3.0",
   "bugs": {
-    "url": "https://github.com/bywatersolutions/koha-plugin-coverflow/issues"
+    "url": "https://github.com/mahsandu/koha-plugin-multislider/issues"
   },
-  "homepage": "https://github.com/bywatersolutions/koha-plugin-coverflow#readme"
+  "homepage": "https://github.com/mahsandu/koha-plugin-multislider#readme"
 }
